@@ -4,11 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SignIn</title>
-    <%- include('./partials/head') %>
+    <%- include('./partials/head') %> <%- include('./partials/style') %>
   </head>
   <body>
     <%- include('./partials/navbar') %>
     <form action="/signup" method="post" style="margin: 10px">
+      <h2>SIGN-UP</h2>
       <div class="mb-3">
         <label for="exampleInputEmail1" class="form-label">Full Name</label>
         <input
