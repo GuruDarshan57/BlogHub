@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <%- include('./partials/head') %>
+  </head>
+  <body>
+    <%- include('./partials/navbar') %>
+    <form
+      class="m-3"
+      method="post"
+      action="/blog/add-blog"
+      enctype="multipart/form-data"
+    >
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Body</label>
+        <input
+          type="text"
+          class="form-control"
+          id="content"
+          name="content"
+          aria-describedby="emailHelp"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="cimg" class="form-label">Cover Image</label>
+        <input class="form-control" type="file" id="cimg" name="cimg" />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <%- include('./partials/footer') %> <%= locals.msg %>
+  </body>
+</html>

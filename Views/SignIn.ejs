@@ -7,8 +7,9 @@
     <%- include('./partials/head') %>
   </head>
   <body>
-    <%- include('./partials/navbar') %>
-
+    <%- include('./partials/navbar') %> <% if (locals.msg) { %>
+    <div class="alert alert-warning" role="alert"><%= locals.msg %></div>
+    <% } %>
     <form action="/signin" method="post" style="margin: 10px">
       <h2>SIGN-IN</h2>
       <div class="mb-3">

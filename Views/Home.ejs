@@ -7,6 +7,22 @@
     <%- include('./partials/head') %>
   </head>
   <body>
-    <%- include('./partials/navbar') %> <%- include('./partials/footer') %>
+    <%- include('./partials/navbar') %>
+    <div class="container m-3">
+      <h2>BLOGS</h2>
+      <% if (locals.blogs) { %> <% blogs.forEach(ele => { %>
+      <div class="card" style="width: 18rem">
+        <img src="/cover_images/<%= ele.cover_img %>" class="card-img-top" />
+        <div class="card-body">
+          <h5 class="card-title text-justify"><%= ele.title %></h5>
+          <p class="card-text text-justify">
+            <%= ele.body.slice(0,200)+" ..." %>
+          </p>
+          <a href="/blog/<%= ele._id %>" class="btn btn-primary">Read More</a>
+        </div>
+      </div>
+      <% }) %> <% } %>
+    </div>
+    <%-include('./partials/footer') %>
   </body>
 </html>

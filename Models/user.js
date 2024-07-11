@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 const { createHmac, randomBytes } = require("crypto")
 
+const { generateToken } = require("../Services/services")
+
 const schema = new Schema({
     fullname: {
         type: String,
@@ -43,12 +45,12 @@ schema.pre('save', function (next) {
 
 schema.static('matchPassword', async function (email, password) {
     const user = await this.findOne({ email: email })
-    if (!user) return -1
+    if (!user) return
 
     const inputPassword = createHmac("sha256", user.salt).update(password).digest("hex")
     const realPassword = user.password
 
-    return inputPassword === realPassword ? true : false
+    return realPassword === inputPassword ? generateToken({ ...user._doc, salt: undefined, password: undefined }) : "incorrect password"
 })
 
 const user = model('users', schema)
