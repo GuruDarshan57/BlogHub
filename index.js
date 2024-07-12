@@ -23,7 +23,7 @@ const connection = require('./connection')
 connection().then(e => { console.log("Connection Established.") })
 
 app.set("view engine", "ejs");
-app.set("views", path.resolve("./views"))
+app.set('views', path.join(__dirname, 'views'));
 
 const { authenticate } = require("./Middlewares/middlewares")
 app.use(express.urlencoded({ extended: true }))
