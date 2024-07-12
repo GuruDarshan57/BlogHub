@@ -8,8 +8,11 @@
   </head>
   <body>
     <%- include('./partials/navbar') %>
-    <div class="container m-3">
-      <h2>BLOGS</h2>
+    <h2 class="m-3">BLOGS</h2>
+    <div
+      class="container m-3"
+      style="display: flex; flex-wrap: wrap; flex-direction: row; gap: 20px"
+    >
       <% if (locals.blogs) { %> <% blogs.forEach(ele => { %>
       <div class="card" style="width: 18rem">
         <img src="/cover_images/<%= ele.cover_img %>" class="card-img-top" />
@@ -21,7 +24,9 @@
           <a href="/blog/<%= ele._id %>" class="btn btn-primary">Read More</a>
         </div>
       </div>
-      <% }) %> <% } %>
+      <% }) %> <%} else { %>
+      <h3>No Blogs to Display</h3>
+      <% } %>
     </div>
     <%-include('./partials/footer') %>
   </body>

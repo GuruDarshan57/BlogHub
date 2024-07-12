@@ -2,29 +2,27 @@ const mongoose = require("mongoose")
 const user = require("./user")
 
 const Schema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    }
-    , body: {
-        type: String
-    }
-    , cover_img: {
+    comment: {
         type: String,
         required: true
     }
     , created_by: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: user
+        ref: user,
+        required: true
+    }
+    , blogid: {
+        type: String,
+        required: true
     }
 })
 
-const blog = mongoose.model("blog", Schema)
+const comments = mongoose.model("comments", Schema)
 
 // async function delAll() {
-//     await blog.deleteMany()
+//     await comments.deleteMany()
 // }
 
 // delAll()
 
-module.exports = blog
+module.exports = comments

@@ -10,6 +10,21 @@
     <%- include('./partials/navbar') %>
     <div class="container m-3">
       <h2><%= blog.title%></h2>
+      <div
+        class="container flex"
+        style="
+          justify-content: space-between;
+          display: flex;
+          flex-direction: row;
+        "
+      >
+        <h4>Blog by : <%= locals.blog.created_by.fullname %></h4>
+        <img
+          style="height: 50px; border-radius: 100%; margin: 5px"
+          src="<%= blog.created_by.profileImg %>"
+          alt=""
+        />
+      </div>
       <img
         src="/cover_images/<%= blog.cover_img %>"
         style="height: 300px; width: 600px"
@@ -21,6 +36,28 @@
       >
         <%= blog.body %>
       </p>
+    </div>
+    <div class="container m-3">
+      <h2>Add Comment</h2>
+      <form class="m-3" method="post" action="/blog/comments/<%= blog._id %>">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="comment" name="comment" />
+        </div>
+        <button type="submit" class="btn btn-primary">Add Comment</button>
+      </form>
+    </div>
+
+    <div class="container m-3">
+      <% if (locals.comment) { %>
+      <h2>Comments [<%= comment.length %>]</h2>
+      <% comment.forEach(ele => { %>
+      <div class="container m-2" style="border: solid 1px black">
+        <h4><%= ele.comment %></h4>
+        <p><%= ele.created_by.fullname %></p>
+      </div>
+      <% }) %> <% } else { %>
+      <h2>No Comments</h2>
+      <%} %>
     </div>
     <%-include('./partials/footer') %>
   </body>
