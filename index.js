@@ -4,6 +4,8 @@ const path = require("path")
 const cookieParser = require('cookie-parser')
 const multer = require("multer")
 
+require("dotenv").config()
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, './public/cover_images')
@@ -29,7 +31,7 @@ app.use(express.static("public"))
 app.use(cookieParser())
 app.use(authenticate)
 
-const Port = 3000;
+const Port = process.env.PORT || 3000;
 app.listen(Port, () => {
     console.log("Server has started at Port " + Port)
 })
